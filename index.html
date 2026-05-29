@@ -1,0 +1,1897 @@
+<!-- Replace YOUR-DOMAIN.com before launch -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How to Password Protect and Restrict Access to YouTube Videos</title>
+<meta content="Learn how to restrict access to your video content. Compare YouTube Private vs Unlisted settings, discover Vimeo alternatives, and see how to truly password protect video files." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root {
+    --color-hero-bg: #FFF0F8;
+    --color-primary-accent: #FF6B9D;
+    --color-secondary-accent: #6BCFFF;
+    --color-tertiary: #B8F0A8;
+    --color-quaternary: #FFD166;
+    --color-content-bg: #FFF0F8;
+    --color-body-text: #3D2B4F;
+    --color-heading-text: #3D2B4F;
+    --color-border: rgba(61, 43, 79, 0.12);
+    --color-meta-text: rgba(61, 43, 79, 0.72);
+    --color-saas-band-bg: #3D2B4F;
+    --color-white: #FFFFFF;
+    --font-heading: 'Nunito', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    --max-reading-width: 780px;
+    --max-wide-width: 1120px;
+    --section-padding-v: 84px;
+    --radius-card: 22px;
+    --radius-large: 34px;
+    --radius-pill: 50px;
+    --shadow-card: 0 18px 45px rgba(255, 107, 157, 0.18);
+    --shadow-blue: 0 18px 45px rgba(107, 207, 255, 0.20);
+    --transition-speed: 0.25s;
+    --wave-bg: #FFF0F8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: radial-gradient(circle at top left, rgba(255, 209, 102, .24), transparent 28rem),
+                radial-gradient(circle at bottom right, rgba(107, 207, 255, .22), transparent 28rem),
+                var(--wave-bg);
+    color: var(--color-body-text);
+    line-height: 1.72;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color .25s ease;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle, rgba(255,255,255,.55) 0 4px, transparent 5px) 5% 12%/90px 90px,
+        radial-gradient(circle, rgba(255,107,157,.18) 0 7px, transparent 8px) 95% 10%/110px 110px;
+    opacity: .45;
+    z-index: -1;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-heading-text);
+    line-height: 1.12;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+h1 {
+    font-size: clamp(34px, 7vw, 56px);
+    letter-spacing: -0.035em;
+}
+
+h2 {
+    font-size: clamp(28px, 4vw, 38px);
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 1.45rem;
+    margin-top: 1.5rem;
+}
+
+p { margin-bottom: 1.25rem; }
+
+ul, ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+li { margin-bottom: 0.5rem; }
+
+a {
+    color: #D93974;
+    text-decoration: none;
+    font-weight: 800;
+    transition: color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+}
+
+a:hover {
+    color: #B72C60;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header & Nav --- */
+header {
+    background-color: rgba(255, 240, 248, .86);
+    border-bottom: 1px solid rgba(255, 107, 157, .18);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(18px);
+    transition: box-shadow var(--transition-speed), background var(--transition-speed);
+}
+
+header.scrolled {
+    box-shadow: 0 14px 35px rgba(255, 107, 157, 0.17);
+    background-color: rgba(255,255,255,.88);
+}
+
+.nav-container {
+    max-width: var(--max-wide-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-brand,
+.footer-brand {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-heading-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: .01em;
+}
+
+.brand-lock {
+    width: 42px;
+    height: 42px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 18px;
+    background: rgba(255,255,255,.78);
+    box-shadow: 0 10px 24px rgba(255, 107, 157, .22);
+    flex: 0 0 auto;
+}
+
+.brand-lock svg {
+    width: 34px;
+    height: 34px;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: rgba(61,43,79,.78);
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 8px 4px;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary-accent);
+    transform: translateY(-1px);
+}
+
+.btn-cta-nav {
+    padding: 10px 18px !important;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, var(--color-primary-accent), #FF88B7);
+    color: var(--color-white) !important;
+    box-shadow: 0 12px 24px rgba(255, 107, 157, .28);
+}
+
+.btn-cta-nav:hover {
+    background: linear-gradient(135deg, #FF5B93, #FF9CC4);
+    color: var(--color-white) !important;
+    text-decoration: none;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: #fff;
+    border: 0;
+    border-radius: 18px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-heading-text);
+    width: 46px;
+    height: 46px;
+    box-shadow: var(--shadow-card);
+}
+
+/* --- Layout Containers --- */
+.container-reading {
+    max-width: var(--max-reading-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.container-wide {
+    max-width: var(--max-wide-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section {
+    padding: var(--section-padding-v) 0;
+    position: relative;
+}
+
+.section-alt {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255, 209, 102, .16), transparent 24rem),
+        radial-gradient(circle at 88% 30%, rgba(107, 207, 255, .16), transparent 28rem),
+        rgba(255,255,255,.58);
+}
+
+/* --- Hero --- */
+.hero-article {
+    padding: 86px 0 54px;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(107,207,255,.42), transparent 10rem),
+        radial-gradient(circle at 88% 12%, rgba(255,209,102,.46), transparent 11rem),
+        radial-gradient(circle at 78% 82%, rgba(184,240,168,.48), transparent 12rem),
+        linear-gradient(135deg, #FFF0F8, #FFF7FC 55%, #EDF9FF);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-article::before,
+.hero-article::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    opacity: .75;
+    animation: floaty 8s ease-in-out infinite;
+}
+
+.hero-article::before {
+    width: 140px;
+    height: 140px;
+    left: max(18px, calc((100vw - var(--max-wide-width))/2));
+    bottom: 28px;
+    background: #B8F0A8;
+    box-shadow:
+        260px -60px 0 -40px #FFD166,
+        640px 25px 0 -22px #6BCFFF,
+        840px -140px 0 -50px #FF6B9D;
+}
+
+.hero-article::after {
+    width: 190px;
+    height: 74px;
+    right: max(18px, calc((100vw - var(--max-wide-width))/2));
+    top: 118px;
+    border-radius: 38px;
+    background: #6BCFFF;
+    transform: rotate(-13deg);
+    box-shadow:
+        -180px 210px 0 -20px #FFD166,
+        -460px 40px 0 -22px #FF6B9D;
+    animation-delay: -2.2s;
+}
+
+.hero-article .container-reading {
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: var(--color-meta-text);
+    margin-bottom: 18px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    display: inline-flex;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 10px 24px rgba(107,207,255,.16);
+}
+
+.hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--color-meta-text);
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px dashed rgba(255, 107, 157, .28);
+    font-weight: 800;
+}
+
+/* --- Kawaii mascot --- */
+.kawaii-mascot {
+    width: 116px;
+    height: 116px;
+    margin: 0 0 24px auto;
+    border-radius: 36px;
+    background: rgba(255,255,255,.65);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 18px 40px rgba(255,107,157,.20);
+    transform: rotate(3deg);
+}
+
+.mascot-head {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    box-shadow: inset 0 -8px 0 rgba(255, 107, 157, .09);
+}
+
+.eye {
+    position: absolute;
+    top: 30px;
+    width: 10px;
+    height: 14px;
+    border-radius: 50%;
+    background: #3D2B4F;
+    transform-origin: center;
+    animation: mascotBlink 4s infinite;
+}
+
+.eye-left { left: 25px; }
+.eye-right { right: 25px; }
+
+.cheek {
+    position: absolute;
+    top: 48px;
+    width: 13px;
+    height: 9px;
+    border-radius: 999px;
+    background: #FF9FC1;
+    opacity: .9;
+}
+
+.cheek-left { left: 15px; }
+.cheek-right { right: 15px; }
+
+.smile {
+    position: absolute;
+    left: 31px;
+    top: 45px;
+    width: 20px;
+    height: 12px;
+    border-bottom: 4px solid #FF6B9D;
+    border-radius: 0 0 30px 30px;
+}
+
+/* --- Quick Answer Box --- */
+.quick-answer {
+    background: rgba(255,255,255,.94);
+    border: 0;
+    padding: 28px;
+    border-radius: var(--radius-card);
+    margin: 30px 0 32px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-answer::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 9px;
+    border-radius: 22px 0 0 22px;
+    background: linear-gradient(180deg, var(--color-primary-accent), var(--color-secondary-accent), var(--color-tertiary), var(--color-quaternary));
+}
+
+.label {
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+    background: var(--color-primary-accent);
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+}
+
+/* --- TOC --- */
+.toc-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+    padding: 34px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-card);
+}
+
+.toc-card h3 {
+    margin-top: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary-accent);
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 1;
+}
+
+@media (min-width: 600px) {
+    .toc-list { columns: 2; gap: 24px; }
+}
+
+.toc-list li {
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.toc-list a {
+    color: var(--color-heading-text);
+    font-weight: 800;
+    font-size: 15px;
+    background: linear-gradient(transparent 62%, rgba(255,209,102,.48) 62%);
+    border-radius: 8px;
+}
+
+/* --- Images --- */
+.content-image {
+    margin: 28px 0 34px;
+    padding: 14px;
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(255,255,255,.82);
+    overflow: hidden;
+    position: relative;
+}
+
+.content-image::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border-radius: 22px;
+    pointer-events: none;
+    border: 2px dashed rgba(255,107,157,.15);
+}
+
+.content-image img {
+    display: block;
+    width: 100%;
+    max-height: 430px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff, rgba(255,240,248,.9));
+}
+
+.content-image.image-blue { box-shadow: var(--shadow-blue); }
+.content-image.image-green { box-shadow: 0 18px 45px rgba(184,240,168,.28); }
+.content-image.image-yellow { box-shadow: 0 18px 45px rgba(255,209,102,.25); }
+.content-image.image-boxshot {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-image.image-boxshot img {
+    max-height: 300px;
+}
+
+.hero-media {
+    transform: rotate(-1.25deg);
+}
+
+/* --- UI Components --- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 13px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 800;
+    background: rgba(184,240,168,.78);
+    color: var(--color-body-text);
+    margin-bottom: 16px;
+    box-shadow: 0 10px 20px rgba(184,240,168,.22);
+}
+
+.callout {
+    background: var(--color-white);
+    border: 0;
+    padding: 26px;
+    border-radius: var(--radius-card);
+    margin: 24px 0;
+    box-shadow: var(--shadow-card);
+}
+
+.btn-primary,
+.btn-outline,
+.btn-outline-dark {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: var(--radius-pill);
+    font-weight: 800;
+    text-decoration: none !important;
+    transition: background var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary-accent), #FF8AB8);
+    color: var(--color-white) !important;
+    border: none;
+    box-shadow: 0 14px 28px rgba(255, 107, 157, .28);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #FF5B93, #FF9CC4);
+    transform: translateY(-2px);
+    color: #fff !important;
+}
+
+.btn-outline {
+    background: linear-gradient(135deg, var(--color-secondary-accent), #8FDDFF);
+    color: #fff !important;
+    border: none;
+    box-shadow: 0 14px 28px rgba(107, 207, 255, .26);
+}
+
+.btn-outline:hover {
+    background: linear-gradient(135deg, #51C7FF, #A1E3FF);
+    color: #fff !important;
+}
+
+.btn-outline-dark {
+    background-color: transparent;
+    color: var(--color-primary-accent) !important;
+    border: 2px solid var(--color-primary-accent);
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--color-primary-accent);
+    color: var(--color-white) !important;
+}
+
+/* --- Premium SaaS Moment --- */
+.saas-band {
+    background:
+        radial-gradient(circle at 12% 20%, rgba(255,107,157,.35), transparent 20rem),
+        radial-gradient(circle at 86% 16%, rgba(107,207,255,.30), transparent 20rem),
+        radial-gradient(circle at 70% 100%, rgba(184,240,168,.24), transparent 18rem),
+        var(--color-saas-band-bg);
+    color: var(--color-white);
+    padding: 105px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.saas-band h2 {
+    color: var(--color-white);
+    font-size: clamp(34px, 5vw, 48px);
+    max-width: 760px;
+    margin: 0 auto 16px;
+}
+
+.saas-band p.subtitle {
+    color: rgba(255,255,255,.78);
+    font-size: 18px;
+    max-width: 640px;
+    margin: 0 auto 40px;
+}
+
+.mockup-container {
+    max-width: 900px;
+    margin: 0 auto 34px;
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,0.26);
+    border-radius: 34px;
+    padding: 16px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+}
+
+.mockup-image {
+    width: 100%;
+    min-height: 330px;
+    background: linear-gradient(135deg, #FFFFFF, #FFF0F8);
+    border-radius: 24px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: #3D2B4F;
+    font-family: var(--font-heading);
+    border: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.mockup-image img {
+    width: 100%;
+    height: auto;
+    max-height: 430px;
+    object-fit: contain;
+    border-radius: 22px;
+}
+
+.mockup-label {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    display: inline-flex;
+    justify-content: center;
+    color: var(--color-body-text);
+    background: rgba(255,255,255,.88);
+    border-radius: var(--radius-pill);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 10px 22px rgba(61,43,79,.10);
+}
+
+.chip-container {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.chip {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.24);
+    padding: 9px 17px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* --- Components: Features --- */
+.feature-dl {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    counter-reset: feature;
+}
+
+@media (min-width: 768px) {
+    .feature-dl { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+}
+
+.feature-dl dt {
+    display: none;
+}
+
+.feature-dl dd {
+    counter-increment: feature;
+    padding: 28px 24px 24px;
+    margin: 0;
+    border: 0;
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-dl dd::before {
+    content: counter(feature, decimal-leading-zero);
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--color-primary-accent);
+    margin-bottom: 12px;
+}
+
+.feature-dl dd:nth-of-type(4n+1) { background: #FFF0F8; }
+.feature-dl dd:nth-of-type(4n+2) { background: #EFFAFF; }
+.feature-dl dd:nth-of-type(4n+3) { background: #F2FFEF; }
+.feature-dl dd:nth-of-type(4n) { background: #FFF8DE; }
+
+.feature-dl dd:nth-of-type(4n+2)::before { color: var(--color-secondary-accent); }
+.feature-dl dd:nth-of-type(4n+3)::before { color: #79D96A; }
+.feature-dl dd:nth-of-type(4n)::before { color: #E9AC27; }
+
+/* --- Comparison --- */
+.comp-table-wrapper {
+    overflow-x: auto;
+    margin: 40px 0;
+    background: var(--color-white);
+    border-radius: 28px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border);
+}
+
+.comp-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 700px;
+    overflow: hidden;
+    border-radius: 28px;
+}
+
+.comp-table th, .comp-table td {
+    padding: 17px 24px;
+    text-align: left;
+    border-bottom: 1px solid rgba(61,43,79,.10);
+}
+
+.comp-table th {
+    background-color: #FFD9E8;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.comp-table tr:nth-child(even) td {
+    background: #FFF7FB;
+}
+
+.comp-table .group-header {
+    background-color: #FFD9E8 !important;
+    color: #B72C60;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+}
+
+.comp-table .highlight-row td {
+    background-color: #F2FFEF !important;
+    border-left: 5px solid var(--color-tertiary);
+}
+
+/* --- FAQ --- */
+.faq-masonry {
+    column-count: 1;
+    column-gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .faq-masonry { column-count: 2; }
+}
+
+.faq-card {
+    background: var(--color-white);
+    border: 0;
+    border-radius: 26px;
+    padding: 24px;
+    margin-bottom: 24px;
+    break-inside: avoid;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-card:nth-child(4n+1) { background: #FFF7FB; }
+.faq-card:nth-child(4n+2) { background: #EFFAFF; }
+.faq-card:nth-child(4n+3) { background: #F2FFEF; }
+.faq-card:nth-child(4n) { background: #FFF8DE; }
+
+.faq-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+/* --- Testimonials --- */
+.testimonial-band {
+    background-color: #FFF0F8;
+    padding: 40px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    position: relative;
+    box-shadow: var(--shadow-card);
+}
+
+.testimonial-band.alt {
+    background-color: #EFFAFF;
+    border: 0;
+    text-align: right;
+}
+
+.testimonial-text {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--color-heading-text);
+    margin-bottom: 16px;
+}
+
+.testimonial-author {
+    font-weight: 800;
+    font-size: 14px;
+    color: #D93974;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- Pricing --- */
+.pricing-builder {
+    background: var(--color-white);
+    border: 0;
+    border-radius: 34px;
+    padding: 40px;
+    box-shadow: var(--shadow-card);
+}
+
+.builder-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 34px;
+}
+
+@media (min-width: 768px) {
+    .builder-grid { grid-template-columns: 1fr 350px; }
+}
+
+.builder-options label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 17px;
+    border: 0;
+    border-radius: 22px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    background: #FFF7FB;
+    box-shadow: 0 10px 22px rgba(255,107,157,.10);
+}
+
+.builder-options label:nth-of-type(2) { background: #EFFAFF; }
+.builder-options label:nth-of-type(3) { background: #F2FFEF; }
+.builder-options label:nth-of-type(4) { background: #FFF8DE; }
+
+.builder-options label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 32px rgba(255,107,157,.17);
+}
+
+.builder-options input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--color-primary-accent);
+    width: 18px;
+    height: 18px;
+}
+
+.builder-result {
+    background: linear-gradient(135deg, #FFF0F8, #EFFAFF);
+    padding: 32px;
+    border-radius: 28px;
+    text-align: center;
+    border: 2px solid rgba(255,107,157,.22);
+    box-shadow: var(--shadow-blue);
+}
+
+.plan-price {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-heading-text);
+    margin: 16px 0;
+    line-height: 1;
+}
+
+/* --- Quiz & Toggles --- */
+.interactive-quiz {
+    background: var(--color-white);
+    padding: 32px;
+    border-radius: 30px;
+    border: 0;
+    margin: 32px 0;
+    box-shadow: var(--shadow-card);
+}
+
+.quiz-question {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    margin-bottom: 24px;
+    font-weight: 800;
+}
+
+.quiz-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 17px;
+    margin-bottom: 12px;
+    background: #FFF7FB;
+    border: 0;
+    border-radius: 22px;
+    font-size: 16px;
+    color: var(--color-body-text);
+    font-weight: 800;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.quiz-btn:nth-of-type(2) { background: #EFFAFF; }
+.quiz-btn:nth-of-type(3) { background: #F2FFEF; }
+
+.quiz-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(107, 207, 255, .18);
+}
+
+.quiz-result {
+    display: none;
+    margin-top: 24px;
+    padding: 24px;
+    background: #FFF8DE;
+    border-radius: 22px;
+    border-left: 0;
+    box-shadow: inset 0 0 0 2px rgba(255,209,102,.35);
+}
+
+.quiz-result.active {
+    display: block;
+}
+
+.sig-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.sig-toggle {
+    display: inline-flex;
+    background: #FFE1ED;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+.sig-toggle button {
+    background: transparent;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 26px;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--color-meta-text);
+    transition: all var(--transition-speed);
+}
+
+.sig-toggle button.active {
+    background: var(--color-white);
+    color: var(--color-primary-accent);
+    box-shadow: 0 8px 18px rgba(255,107,157,.18);
+}
+
+.sig-view {
+    display: none;
+    animation: fadeIn var(--transition-speed) ease-in;
+}
+
+.sig-view.active {
+    display: block;
+}
+
+/* --- Bounce, bubbles, jelly, confetti --- */
+.bounce-card {
+    opacity: 0;
+    transform: translateY(28px) scale(.96);
+    transition: opacity .7s ease, transform .7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform, opacity;
+}
+
+.bounce-card.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.bubble-source {
+    position: relative;
+    overflow: hidden;
+}
+
+.bubble-source::before,
+.bubble-source::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 68%;
+    width: 13px;
+    height: 13px;
+    background: var(--bubble-color, #FF6B9D);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bubble-source::after {
+    left: 78%;
+    width: 9px;
+    height: 9px;
+}
+
+.bubble-source:hover::before,
+.bubble-source:hover::after,
+.bubble-source.bubble-tap::before,
+.bubble-source.bubble-tap::after {
+    animation: bubbleRise 900ms ease-out forwards;
+}
+
+.feature-dl dd::after,
+.faq-card::after,
+.testimonial-band::after,
+.content-image::after,
+.interactive-quiz::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 58%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--bubble-color, #FFD166);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.feature-dl dd:hover::after,
+.faq-card:hover::after,
+.testimonial-band:hover::after,
+.content-image:hover::after,
+.interactive-quiz:hover::after,
+.feature-dl dd.bubble-tap::after,
+.faq-card.bubble-tap::after,
+.testimonial-band.bubble-tap::after,
+.content-image.bubble-tap::after,
+.interactive-quiz.bubble-tap::after {
+    animation: bubbleRiseAlt 1s ease-out forwards;
+}
+
+.jelly-active {
+    animation: jellySquish 300ms ease-out;
+}
+
+.confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confettiBurst 1s ease-out forwards;
+}
+
+/* --- Footer --- */
+footer {
+    background:
+        radial-gradient(circle at 20% 0%, rgba(255,107,157,.22), transparent 20rem),
+        radial-gradient(circle at 85% 20%, rgba(107,207,255,.22), transparent 22rem),
+        var(--color-body-text);
+    color: rgba(255,255,255,0.74);
+    padding: 64px 0 40px;
+    font-size: 14px;
+}
+
+footer a {
+    color: var(--color-white);
+}
+
+footer .footer-brand {
+    color: var(--color-white);
+}
+
+footer .brand-lock {
+    background: rgba(255,255,255,.13);
+    box-shadow: 0 10px 24px rgba(0,0,0,.16);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+.footer-brand {
+    font-size: 20px;
+    color: var(--color-white);
+    margin-bottom: 16px;
+}
+
+.footer-disclosure {
+    font-size: 13px;
+    color: rgba(255,255,255,0.56);
+    border-top: 1px solid rgba(255,255,255,0.13);
+    padding-top: 24px;
+    margin-top: 24px;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-14px) rotate(4deg); }
+}
+
+@keyframes mascotBlink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(.1); }
+}
+
+@keyframes bubbleRise {
+    0% { opacity: 0; transform: translate(0, 0) scale(.7); }
+    20% { opacity: .9; }
+    100% { opacity: 0; transform: translate(-18px, -60px) scale(1.2); }
+}
+
+@keyframes bubbleRiseAlt {
+    0% { opacity: 0; transform: translate(0, 0) scale(.7); }
+    20% { opacity: .8; }
+    100% { opacity: 0; transform: translate(22px, -72px) scale(1.4); }
+}
+
+@keyframes jellySquish {
+    0% { transform: scale(1); }
+    35% { transform: scale(.9); }
+    65% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes confettiBurst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(.85);
+    }
+}
+
+/* --- Responsive Mobile --- */
+@media (max-width: 768px) {
+    body { font-size: 16px; }
+    .nav-container { height: 68px; }
+    .site-brand { font-size: 18px; }
+    .brand-lock { width: 38px; height: 38px; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 14px;
+        right: 14px;
+        background: rgba(255,255,255,.96);
+        flex-direction: column;
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+        border: 1px solid rgba(255,107,157,.15);
+        border-radius: 28px;
+    }
+    .nav-links.active { display: flex; }
+    .mobile-menu-btn { display: block; }
+    .hero-article { padding: 58px 0 38px; }
+    .hero-meta { flex-wrap: wrap; gap: 9px; }
+    .kawaii-mascot {
+        width: 94px;
+        height: 94px;
+        margin-left: 0;
+    }
+    .mascot-head { width: 70px; height: 70px; }
+    .eye { top: 26px; }
+    .eye-left { left: 21px; }
+    .eye-right { right: 21px; }
+    .cheek { top: 42px; }
+    .smile { left: 26px; top: 39px; }
+    .saas-band { padding: 68px 0; }
+    .mockup-image { min-height: 230px; }
+    .mockup-label {
+        position: static;
+        margin: 12px;
+        font-size: 12px;
+    }
+    .cta-group { flex-direction: column; }
+    .btn-primary, .btn-outline, .btn-outline-dark { width: 100%; text-align: center; }
+    .pricing-builder { padding: 26px; }
+    .content-image img { max-height: 300px; }
+}
+</style>
+</head>
+<body>
+<header id="site-header">
+<div class="nav-container">
+<div class="site-brand"><span aria-hidden="true" class="brand-lock">
+<svg focusable="false" role="img" viewbox="0 0 64 64">
+<defs>
+<lineargradient id="brandGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#FF6B9D"></stop>
+<stop offset="45%" stop-color="#6BCFFF"></stop>
+<stop offset="100%" stop-color="#B8F0A8"></stop>
+</lineargradient>
+</defs>
+<rect fill="url(#brandGrad)" height="30" rx="14" width="44" x="10" y="25"></rect>
+<path d="M22 26v-6c0-7 5-12 10-12s10 5 10 12v6" fill="none" stroke="#3D2B4F" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="32" cy="40" fill="#3D2B4F" r="4"></circle>
+<path d="M32 44v5" stroke="#3D2B4F" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="17" cy="30" fill="#FFD166" r="3"></circle>
+<circle cx="49" cy="32" fill="#FFFFFF" opacity=".85" r="3"></circle>
+</svg>
+</span><span>YT Privacy Guide</span></div>
+<button aria-label="Toggle menu" class="mobile-menu-btn" id="menu-toggle">☰</button>
+<nav class="nav-links" id="main-nav">
+<a href="#overview">Overview</a>
+<a href="#youtube-methods">YouTube Privacy</a>
+<a href="#folder-lock">Secure Alternatives</a>
+<a href="#comparison">Comparison</a>
+<a href="#faq">FAQ</a>
+<a class="btn-cta-nav" href="#folder-lock">See Our Top Pick →</a>
+</nav>
+</div>
+</header>
+<main>
+<!-- S1: HERO -->
+<section class="hero-article">
+<div class="container-reading">
+<div class="breadcrumb">Security Guides / Video Privacy</div><div aria-hidden="true" class="kawaii-mascot">
+<div class="mascot-head">
+<span class="eye eye-left"></span>
+<span class="eye eye-right"></span>
+<span class="cheek cheek-left"></span>
+<span class="cheek cheek-right"></span>
+<span class="smile"></span>
+</div>
+</div>
+<h1>How to Password Protect and Restrict Access to YouTube Videos</h1>
+<div class="hero-meta">
+<span>Editorial Team</span>
+<span>·</span>
+<span>Updated May 2026</span>
+<span>·</span>
+<span>12 min read</span>
+</div>
+<div class="quick-answer">
+<span class="label">Quick Answer</span>
+<p><strong>Can you password protect a YouTube video?</strong> No. YouTube does not offer a native feature to add a password field to a video. To restrict access, you must use YouTube's <strong>Private</strong> setting (which requires viewers to log in with an approved Google account) or the <strong>Unlisted</strong> setting (anyone with the link can view). For true file-level password protection and encryption, you must secure the video file locally using <a href="https://www.techradar.com/best/best-encryption-software" rel="noopener noreferrer" target="_blank">dedicated encryption software</a> before uploading or sharing it via cloud drives.</p>
+</div><figure class="content-image hero-media image-pink"><img alt="Security shield illustration for protecting private YouTube video files" decoding="async" loading="lazy" src="https://i.ibb.co/bjywWFhL/security-shield-protecting.jpg"/></figure>
+</div>
+</section>
+<!-- S2: TABLE OF CONTENTS -->
+<section class="section section-alt">
+<div class="container-reading">
+<div class="toc-card">
+<h3>Guide Contents</h3>
+<ul class="toc-list">
+<li><a href="#overview">Understanding YouTube Video Privacy Settings</a></li>
+<li><a href="#youtube-methods">Method 1: Using YouTube's Private Setting</a></li>
+<li><a href="#unlisted">Method 2: Using Unlisted Links</a></li>
+<li><a href="#folder-lock">The Alternative: True Video File Encryption</a></li>
+<li><a href="#features">What You Need in Video Security Software</a></li>
+<li><a href="#comparison">Comparison: YouTube vs Local Encryption</a></li>
+<li><a href="#tutorial">Tutorial: How to Encrypt a Video File</a></li>
+<li><a href="#vimeo">Alternatives to Password-Protected YouTube Videos</a></li>
+<li><a href="#troubleshooting">Troubleshooting Common Issues</a></li>
+<li><a href="#faq">Frequently Asked Questions</a></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- S3: OVERVIEW & QUIZ -->
+<section class="section" id="overview">
+<div class="container-reading">
+<h2>Can You Password Protect a YouTube Video? — Full Guide</h2>
+<p>Millions of creators, educators, and businesses upload content daily, often asking: <em>how to make a password protected YouTube video?</em> The reality is that YouTube is fundamentally designed as a public broadcasting platform. It does not natively support an "open password" or "permissions password" that prompts a viewer to type in a secret code before playback begins.</p>
+<p>Instead, YouTube relies on account-based permissions and hidden links. If you need to secure a video, you must choose between YouTube's built-in compromises, utilizing a competitor platform like Vimeo, or circumventing video hosting platforms entirely by encrypting the raw video file before sharing it.</p><figure class="content-image image-blue"><img alt="Encrypted media vault protecting private video content" decoding="async" loading="lazy" src="https://i.ibb.co/HL2p3K4V/Media-Vault.jpg"/></figure>
+<!-- Interactive Element: Intent / Use Case Quiz -->
+<div class="interactive-quiz" id="privacy-quiz">
+<div class="quiz-question">Which video sharing method is right for you?</div>
+<button class="quiz-btn" data-target="res-unlisted">I want to share a video easily with a group, and I don't care if they forward the link.</button>
+<button class="quiz-btn" data-target="res-private">I want to share a video with specific individuals, and I know their exact email addresses.</button>
+<button class="quiz-btn" data-target="res-encrypt">I need strict, military-grade security ensuring absolutely no unauthorized access, even if a link is leaked.</button>
+<div class="quiz-result" id="res-unlisted">
+<strong>Recommendation: YouTube Unlisted.</strong> This hides the video from search results and your channel page, but anyone who possesses the link can view and share it.
+                    </div>
+<div class="quiz-result" id="res-private">
+<strong>Recommendation: YouTube Private.</strong> You will need to manually invite specific Google accounts. It is secure from the public, but cumbersome for large groups.
+                    </div>
+<div class="quiz-result" id="res-encrypt">
+<strong>Recommendation: File-Level Encryption.</strong> YouTube cannot guarantee strict privacy against screen recording or account sharing. You should encrypt the raw `.mp4` file using software like <a href="https://cloudstorageinfo.org/folder-lock-review" rel="noopener noreferrer" target="_blank">Folder Lock</a>, sync it to a cloud drive, and share the locked file directly.
+                    </div>
+</div>
+</div>
+</section>
+<!-- S4: METHODS (Native YouTube) -->
+<section class="section section-alt" id="youtube-methods">
+<div class="container-reading">
+<span class="badge">Built-in Option</span>
+<h2>YouTube Private vs Unlisted vs Public — Differences</h2>
+<p>Because you cannot directly add a password to a video on YouTube, understanding its privacy modes is essential for restricting access.</p><figure class="content-image image-green"><img alt="Account privacy lock illustration for private video sharing permissions" decoding="async" loading="lazy" src="https://i.ibb.co/C3dZb4Cy/account-privacy-lock-illustration.png"/></figure>
+<h3>How to Share a YouTube Video Privately</h3>
+<p>The "Private" setting is the closest YouTube comes to secure access. When a video is marked private, it does not appear in search results, suggested videos, or on your channel. To share it, you must explicitly invite users via email.</p>
+<div class="callout">
+<strong>Limitations of Private Videos:</strong>
+<ul>
+<li>Viewers <em>must</em> have a Google account to log in and verify their identity.</li>
+<li>You are limited to sharing the video with a maximum of 50 users.</li>
+<li>It is difficult to manage at scale (e.g., for a paid course or large corporate training).</li>
+</ul>
+</div>
+<h3 id="unlisted">Understanding YouTube Unlisted Videos</h3>
+<p>An "Unlisted" video operates like an unindexed webpage. It will not show up in YouTube search or subscriber feeds. However, the URL itself acts as the key. Anyone who has the link can view the video, regardless of whether they have a Google account.</p>
+<p>While easier to share than a Private video, an Unlisted video offers zero real security. If someone posts the link on a public forum, the video effectively becomes public. You cannot restrict access or monitor who is watching an Unlisted video if the link is forwarded.</p>
+</div>
+</section>
+<!-- S5: SAAS MOMENT / RECOMMENDATION -->
+<section class="saas-band" id="folder-lock">
+<div class="container-wide">
+<h2>The Tool We Recommend for True Video Security</h2>
+<p class="subtitle">If your video contains sensitive intellectual property, corporate data, or private moments, YouTube's native settings are insufficient. We recommend encrypting the video file itself before it ever reaches the cloud.</p>
+<div class="mockup-container">
+<div class="mockup-image"><img alt="Folder Lock 10 dashboard screenshot with AES 256-bit encryption active" decoding="async" loading="lazy" src="https://i.ibb.co/ynCZTHt1/folder-lock-10-main-screen.png"/><span class="mockup-label">[ Folder Lock Dashboard Mockup — AES 256-bit Encryption Active ]</span></div>
+</div>
+<div class="chip-container">
+<span class="chip">AES 256-bit Encryption</span>
+<span class="chip">Cross-Platform (Windows, Mac, iOS, Android)</span>
+<span class="chip">Cloud Sync (Dropbox, Google Drive)</span>
+</div><figure class="content-image image-blue saas-extra-image"><img alt="Folder Lock encrypted locker interface for password protected video files" decoding="async" loading="lazy" src="https://i.ibb.co/Q713yG79/Folder-Lock-locker.jpg"/></figure>
+<p class="subtitle">By using Folder Lock, you bypass video hosting platforms entirely. You lock the raw video file in an encrypted digital vault, sync it to your preferred cloud storage, and control access with a genuine master password. It ensures that even if a link is leaked, the file remains impenetrable.</p>
+<div class="cta-group">
+<a class="btn-primary" href="https://www.newsoftwares.net/download/folderlock10-en/folderlock10-en.exe" rel="noopener noreferrer" target="_blank">Try Folder Lock Free →</a>
+<a class="btn-outline" href="https://store.newsoftwares.net/?add=fl10" rel="noopener noreferrer" target="_blank">View Full Version Pricing →</a>
+</div>
+</div>
+</section>
+<!-- S7: FEATURES (V7 Definition List) -->
+<section class="section section-alt" id="features">
+<div class="container-reading">
+<h2>Why Document Password Protection Is Not the Same as Encryption</h2>
+<p>When searching for a "video password," many users confuse simple access hurdles with true encryption. Here is what professional file security software actually provides for your media files compared to standard web toggles.</p><figure class="content-image image-yellow"><img alt="Military grade file shield for encrypted video protection" decoding="async" loading="lazy" src="https://i.ibb.co/C5sfWRJm/Military-Grade-File-Shield.jpg"/></figure>
+<dl class="feature-dl">
+<dt>Military-Grade Encryption</dt>
+<dd>Unlike an unlisted web link that anyone can open, tools like Folder Lock utilize <a href="https://psbios.com/file-encryption-explained/" rel="noopener noreferrer" target="_blank">AES 256-bit encryption</a>. The video file is scrambled at a structural level. Without the correct master password, the video is mathematically impossible to view.</dd>
+<dt>Cross-Platform Lockers</dt>
+<dd>You aren't restricted to a web browser. Encrypted lockers can be created on Windows, macOS, iOS, or Android. A video secured on your PC can be safely synced and accessed on your mobile device.</dd>
+<dt>Cloud Sync Integration</dt>
+<dd>Instead of uploading to YouTube, you can back up encrypted video lockers directly to <a href="https://www.windowscentral.com/how-encrypt-data-storing-it-cloud-and-why-you-should" rel="noopener noreferrer" target="_blank">Dropbox, Google Drive, or OneDrive</a>. The files remain encrypted while resting on the cloud servers.</dd>
+<dt>Portable Protection</dt>
+<dd>If you need to hand off a video physically, you can create a portable executable locker on a USB flash drive. The recipient can enter the password to view the video without needing the software installed on their machine.</dd>
+</dl><figure class="content-image image-blue"><img alt="Cross platform synchronization for encrypted video lockers" decoding="async" loading="lazy" src="https://i.ibb.co/jZfz7Hzz/Cross-Platform-Synchronization.jpg"/></figure>
+</div>
+</section>
+<!-- S8: COMPARISON (Signature Toggle + V2 Grouped Rows) -->
+<section class="section" id="comparison">
+<div class="container-wide">
+<h2 style="text-align:center; margin-bottom: 2rem;">How Secure Is Your Video Really?</h2>
+<!-- Signature Detail: Inline Interactive Toggle -->
+<div class="sig-toggle-container">
+<div class="sig-toggle">
+<button class="active" id="btn-view-web">Web Hosting (YouTube)</button>
+<button id="btn-view-local">File Encryption (Folder Lock)</button>
+</div>
+</div>
+<div class="comp-table-wrapper">
+<!-- Web View -->
+<table class="comp-table sig-view active" id="view-web">
+<thead>
+<tr>
+<th>Method</th>
+<th>Security Level</th>
+<th>Account Required?</th>
+<th>Risk of Leakage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="group-header"><td colspan="4">YouTube Native Settings</td></tr>
+<tr>
+<td><strong>YouTube Public</strong></td>
+<td>None</td>
+<td>No</td>
+<td>Immediate (Indexed globally)</td>
+</tr>
+<tr>
+<td><strong>YouTube Unlisted</strong></td>
+<td>Very Low</td>
+<td>No</td>
+<td>High (Anyone with the URL can share it)</td>
+</tr>
+<tr>
+<td><strong>YouTube Private</strong></td>
+<td>Moderate</td>
+<td>Yes (Google Account)</td>
+<td>Medium (Limited to 50 users; users can still screen-record)</td>
+</tr>
+</tbody>
+</table>
+<!-- Local View -->
+<table class="comp-table sig-view" id="view-local">
+<thead>
+<tr>
+<th>Method</th>
+<th>Security Level</th>
+<th>Account Required?</th>
+<th>Risk of Leakage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="group-header"><td colspan="4">Local File Encryption</td></tr>
+<tr class="highlight-row">
+<td><strong>Folder Lock (AES-256)</strong></td>
+<td>Maximum (Military-Grade)</td>
+<td>No (Only the password is needed)</td>
+<td>Zero (File cannot be opened without the password, even if stolen)</td>
+</tr>
+<tr>
+<td><strong>Basic OS Zipping (7-Zip)</strong></td>
+<td>Moderate</td>
+<td>No</td>
+<td>Low (Susceptible to brute-force if password is weak)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- S9: TUTORIAL -->
+<section class="section section-alt" id="tutorial">
+<div class="container-reading">
+<h2>How to Share a Protected Document Safely (Video Files)</h2>
+<p>If you have decided that YouTube's privacy settings are too risky for your sensitive video, here is how you can use a tool like Folder Lock to secure and share it properly.</p>
+<ol>
+<li><strong>Create a Secure Locker:</strong> Open the software and generate a new encrypted locker. Set a strong, memorable master password.</li>
+<li><strong>Import the Video:</strong> Drag and drop your `.mp4` or `.mov` files into the locker interface. The software encrypts the data instantly on-the-fly.</li>
+<li><strong>Close and Lock:</strong> Once the files are inside, close the locker. It will appear as a single, encrypted file on your hard drive.</li>
+<li><strong>Upload to Cloud:</strong> Upload this single encrypted locker file to Google Drive, Dropbox, or OneDrive.</li>
+<li><strong>Share the Link and Password:</strong> Send the cloud download link to your recipient via email. Communicate the master password via a separate, secure channel (like an encrypted messaging app).</li>
+</ol><figure class="content-image image-green"><img alt="Folder Lock screenshot showing protected folder and video file safeguards" decoding="async" loading="lazy" src="https://i.ibb.co/pj61MNWJ/folder-lock-10-screenshot-safeguard-protect-folders.png"/></figure><figure class="content-image image-blue"><img alt="Encrypted files syncing securely across OneDrive Dropbox iCloud and Google Drive" decoding="async" loading="lazy" src="https://i.ibb.co/xqgxb3Pj/syncing-files-securely-onedrive-dropbox-icloud-and-google-drive.jpg"/></figure>
+</div>
+</section>
+<!-- S14: DEEP DIVE - VIMEO -->
+<section class="section" id="vimeo">
+<div class="container-reading">
+<h2>Alternatives to Password-Protected YouTube Videos</h2>
+<p>If you absolutely must stream the video online rather than sharing an encrypted file download, YouTube is not your only option. Competitor platforms offer the specific feature YouTube lacks.</p><figure class="content-image image-yellow"><img alt="Secure audio and video file protection for private media sharing" decoding="async" loading="lazy" src="https://i.ibb.co/fzm1rk4C/Secure-Audio-Video-Files.jpg"/></figure>
+<h3>Vimeo Password Protection</h3>
+<p>Unlike YouTube, Vimeo allows creators (usually on paid tiers) to set a strict password on a video. When a viewer clicks the link, they are met with a lock screen and a text field. They do not need a Vimeo account to watch; they only need to type in the password you provided.</p>
+<p>While convenient, remember that streaming platforms still buffer the video to the viewer's device. For ultimate security, <a href="https://forum.videohelp.com/threads/229185-Restricting-Access-to-a-DVD-CD" rel="noopener noreferrer" target="_blank">preventing document copying</a> or unauthorized downloading still requires local file encryption.</p>
+</div>
+</section>
+<!-- S13: PRICING (V4 Checklist Builder) -->
+<section class="section section-alt">
+<div class="container-reading">
+<h2>Evaluating Video Security Software Costs</h2>
+<p>If you opt for dedicated encryption, understanding the pricing structure of tools like Folder Lock is straightforward. Use the checklist below to see which version fits your needs based on the developer's specifications.</p>
+<div class="pricing-builder">
+<div class="builder-grid">
+<figure class="content-image image-pink image-boxshot"><img alt="Folder Lock 10 product boxshot for video security software" decoding="async" loading="lazy" src="https://i.ibb.co/V0Sw4tk7/folder-lock-10-boxshot.png"/></figure><div class="builder-options" id="pricing-form">
+<label>
+<input id="req-unlimited" type="checkbox"/>
+<span>I need to encrypt videos larger than 1 GB total.</span>
+</label>
+<label>
+<input id="req-sync" type="checkbox"/>
+<span>I need to sync lockers across more than 2 devices.</span>
+</label>
+<label>
+<input id="req-usb" type="checkbox"/>
+<span>I need to create portable lockers for USB drives.</span>
+</label>
+<label>
+<input id="req-shred" type="checkbox"/>
+<span>I want to securely shred the original unencrypted video files.</span>
+</label>
+</div>
+<div class="builder-result">
+<h3 style="margin-top:0;">Recommended Tier</h3>
+<div class="plan-price" id="plan-output">$0</div>
+<p id="plan-desc" style="font-size: 14px; margin-bottom: 24px;">Folder Lock Free Version. Allows up to 1GB of locker size and syncing across 2 devices.</p>
+<a class="btn-outline-dark" href="https://store.newsoftwares.net/?add=fl10" rel="noopener noreferrer" style="width: 100%;" target="_blank">Get Started</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- S16: TROUBLESHOOTING -->
+<section class="section" id="troubleshooting">
+<div class="container-reading">
+<h2>What to Do If You Forget a Document Password</h2>
+<p>Dealing with lost passwords is a common issue when securing media files.</p><figure class="content-image image-blue"><img alt="Lock screen security illustration for forgotten video protection passwords" decoding="async" loading="lazy" src="https://i.ibb.co/xtZC7X09/lock-screen-security.jpg"/></figure>
+<h3>How to recover folder lock password?</h3>
+<p>If you are using Folder Lock and forget your master password, recovery depends on how you set up your account. True AES-256 encryption does not have a "backdoor." If you lose the master key, the data remains encrypted. You must rely on any serial keys, recovery emails, or master account logins you established when you initially purchased or registered the software. Always maintain a secure <a href="https://www.computerworld.com/article/1459324/the-day-of-the-password-is-done.html" rel="noopener noreferrer" target="_blank">password manager</a> to prevent total data loss.</p>
+<h3>YouTube Private Video Not Working</h3>
+<p>If a user cannot access your Private YouTube video, ensure that they are logged into the exact Google account you invited. A common mistake is viewers being logged into a secondary personal account or a corporate workspace account that was not included on the permission list.</p>
+</div>
+</section>
+<!-- S17: TESTIMONIALS (V4 Tinted Bands) -->
+<section class="section section-alt">
+<div class="container-reading">
+<h2>How Creators Secure Their Media</h2>
+<figure class="content-image image-green"><img alt="Safe distribution illustration for encrypted video file sharing" decoding="async" loading="lazy" src="https://i.ibb.co/BVz03KWh/Safe-Distribution.jpg"/></figure><div class="testimonial-band">
+<p class="testimonial-text">"I tried using YouTube's Unlisted links to share draft cuts of our short films with the crew. Within days, a link leaked to a forum. Now, we encrypt the master MP4 files with Folder Lock and share them via Dropbox. It takes an extra step, but peace of mind is worth it."</p>
+<div class="testimonial-author">Independent Filmmaker</div>
+</div>
+<div class="testimonial-band alt">
+<p class="testimonial-text">"Managing YouTube Private permissions for a training group of 200 employees was a nightmare. We shifted to using encrypted, password-protected USB drives for remote offices. It solved our compliance issues instantly."</p>
+<div class="testimonial-author">Corporate HR Director</div>
+</div>
+</div>
+</section>
+<!-- S20: FAQ (V2 Masonry) -->
+<section class="section" id="faq">
+<div class="container-wide">
+<h2 style="text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h2><figure class="content-image image-yellow"><img alt="Encryption explainer illustration for YouTube video privacy FAQ" decoding="async" loading="lazy" src="https://i.ibb.co/gZ8Tcbqc/what-is-encryption-complete-explainer-for-beginners.jpg"/></figure>
+<div class="faq-masonry">
+<div class="faq-card">
+<h3>Can you password protect a YouTube video?</h3>
+<p>No, YouTube does not have a native feature to add a password to a video. You can only restrict access using the "Private" setting (which requires specific Google account logins) or the "Unlisted" setting (which hides the video but allows anyone with the link to watch).</p>
+</div>
+<div class="faq-card">
+<h3>What is the alternative to password-protecting a YouTube video?</h3>
+<p>If you need a streaming link with a password, you can use Vimeo, which offers direct password protection on specific paid plans. If you need ultimate security, bypass streaming entirely: encrypt the video file locally using AES-256 software and share the locked file directly.</p>
+</div>
+<div class="faq-card">
+<h3>What is the difference between private, unlisted, and public on YouTube?</h3>
+<p>Public videos are visible to everyone and indexed in search. Unlisted videos are hidden from search and your channel but can be viewed by anyone who has the direct URL. Private videos are restricted entirely; only the channel owner and specifically invited Google accounts can view them.</p>
+</div>
+<div class="faq-card">
+<h3>Is an unlisted YouTube video completely private?</h3>
+<p>No. While it won't show up in search results, the URL is not secure. If an invited viewer copies the link and posts it publicly, anyone who clicks it can watch the video.</p>
+</div>
+<div class="faq-card">
+<h3>How to unlock folder lock if password forgotten?</h3>
+<p>Because Folder Lock uses <a href="https://www.rswebsols.com/data-encryption-types-security/" rel="noopener noreferrer" target="_blank">military-grade AES-256 encryption</a>, there is no simple "crack" or backdoor. If you forget your locker password, you cannot access the files. For account-level recovery related to serial numbers or app access, you must contact NewSoftwares support with your registration details.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- S22: FINAL VERDICT -->
+<section class="section section-alt" style="text-align: center;">
+<div class="container-reading">
+<h2>The Bottom Line</h2>
+<p>When asking how to password protect a video on YouTube, the answer is a compromise. YouTube's native tools are designed for broad sharing, not strict security. Private videos are cumbersome to manage, and Unlisted links are too easily leaked.</p>
+<p>For casual sharing, YouTube's settings might suffice. But for sensitive personal media, corporate assets, or intellectual property, true security requires encrypting the actual video file. Using dedicated encryption tools ensures that you remain in control of your data, regardless of where the file travels or where it is hosted.</p><figure class="content-image image-pink"><img alt="Folder Lock 10 promotional security graphic for encrypted video files" decoding="async" loading="lazy" src="https://i.ibb.co/C3dwdr7Z/folder-lock-10-promotional-poster-newsoftwares.jpg"/></figure>
+<div style="margin-top: 32px;">
+<a class="btn-primary" href="https://www.newsoftwares.net/ns_download/folderlock10-en/folderlock10-en.exe" rel="noopener noreferrer" style="margin-right: 16px;" target="_blank">Try Folder Lock free →</a>
+<a class="btn-outline-dark" href="https://store.newsoftwares.net/?add=fl10" rel="noopener noreferrer" target="_blank">Get the full version →</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container-wide">
+<div class="footer-grid">
+<div>
+<div class="footer-brand"><span aria-hidden="true" class="brand-lock">
+<svg focusable="false" role="img" viewbox="0 0 64 64">
+<defs>
+<lineargradient id="brandGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#FF6B9D"></stop>
+<stop offset="45%" stop-color="#6BCFFF"></stop>
+<stop offset="100%" stop-color="#B8F0A8"></stop>
+</lineargradient>
+</defs>
+<rect fill="url(#brandGrad)" height="30" rx="14" width="44" x="10" y="25"></rect>
+<path d="M22 26v-6c0-7 5-12 10-12s10 5 10 12v6" fill="none" stroke="#3D2B4F" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="32" cy="40" fill="#3D2B4F" r="4"></circle>
+<path d="M32 44v5" stroke="#3D2B4F" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="17" cy="30" fill="#FFD166" r="3"></circle>
+<circle cx="49" cy="32" fill="#FFFFFF" opacity=".85" r="3"></circle>
+</svg>
+</span><span>YT Privacy Guide</span></div>
+<p>Independent guides on media security, privacy settings, and data protection.</p>
+</div>
+<div>
+<h4 style="color: var(--color-white); font-size: 16px;">Navigation</h4>
+<ul style="list-style: none; padding: 0;">
+<li><a href="#overview">Privacy Methods</a></li>
+<li><a href="#folder-lock">Secure Alternatives</a></li>
+<li><a href="#comparison">Comparisons</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 style="color: var(--color-white); font-size: 16px;">Legal</h4>
+<ul style="list-style: none; padding: 0;">
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Terms of Use</a></li>
+<li><a href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-disclosure">
+                This site operates as an independent editorial resource. Some links may earn a referral commission at no cost to you. Product recommendations reflect editorial judgment and independent assessment.<br/><br/>
+                Folder Lock is developed by <a href="https://www.newsoftwares.net" rel="noopener noreferrer" target="_blank">NewSoftwares.net</a>.<br/>
+                © 2026 YT Privacy Guide. All rights reserved.
+            </div>
+</div>
+</footer>
+<!-- Schema -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "YTPrivacyGuide",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "name": "How to Password Protect and Restrict Access to YouTube Videos",
+          "description": "Learn how to restrict access to your video content. Compare YouTube Private vs Unlisted settings and true video file encryption."
+        },
+        {
+          "@type": "Article",
+          "headline": "How to Password Protect and Restrict Access to YouTube Videos",
+          "author": {
+            "@type": "Organization",
+            "name": "Editorial Team"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "NewSoftwares.net"
+          },
+          "datePublished": "2026-05-25",
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Can you password protect a YouTube video?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No, YouTube does not have a native feature to add a password to a video. You can only restrict access using the Private setting or the Unlisted setting."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between private, unlisted, and public on YouTube?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Public videos are visible to everyone. Unlisted videos are hidden from search but can be viewed by anyone with the direct URL. Private videos are restricted entirely to invited Google accounts."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "name": "NewSoftwares.net",
+          "description": "Developer of Folder Lock and security software."
+        }
+      ]
+    }
+    </script>
+<!-- Interactions -->
+<script defer="">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+
+            // Sticky Header Scroll effect
+            const header = document.getElementById('site-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        mainNav.classList.remove('active');
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Quiz Logic
+            const quizBtns = document.querySelectorAll('.quiz-btn');
+            const quizResults = document.querySelectorAll('.quiz-result');
+            
+            quizBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    quizResults.forEach(r => r.classList.remove('active'));
+                    quizBtns.forEach(b => {
+                        b.style.borderColor = 'var(--color-border)';
+                        b.style.background = 'var(--color-hero-bg)';
+                    });
+                    
+                    btn.style.borderColor = 'var(--color-primary-accent)';
+                    btn.style.background = 'var(--color-secondary-accent)';
+                    
+                    const targetId = btn.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            // Signature Detail Toggle (Web vs Local Comparison)
+            const btnWeb = document.getElementById('btn-view-web');
+            const btnLocal = document.getElementById('btn-view-local');
+            const viewWeb = document.getElementById('view-web');
+            const viewLocal = document.getElementById('view-local');
+
+            if(btnWeb && btnLocal) {
+                btnWeb.addEventListener('click', () => {
+                    btnWeb.classList.add('active');
+                    btnLocal.classList.remove('active');
+                    viewWeb.classList.add('active');
+                    viewLocal.classList.remove('active');
+                });
+                btnLocal.addEventListener('click', () => {
+                    btnLocal.classList.add('active');
+                    btnWeb.classList.remove('active');
+                    viewLocal.classList.add('active');
+                    viewWeb.classList.remove('active');
+                });
+            }
+
+            // Pricing Builder Logic
+            const form = document.getElementById('pricing-form');
+            const planOutput = document.getElementById('plan-output');
+            const planDesc = document.getElementById('plan-desc');
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+
+            if(form && planOutput) {
+                const evaluatePricing = () => {
+                    let needsPro = false;
+                    checkboxes.forEach(cb => {
+                        if(cb.checked) needsPro = true;
+                    });
+
+                    if(needsPro) {
+                        planOutput.textContent = '$39.95';
+                        planDesc.textContent = 'Folder Lock Pro Version. Removes the 1GB locker limitation, allows syncing across up to 5 devices, and unlocks portable USB lockers and file shredding.';
+                    } else {
+                        planOutput.textContent = '$0';
+                        planDesc.textContent = 'Folder Lock Free Version. Allows up to 1GB of locker size and syncing across 2 devices. Perfect for casual users.';
+                    }
+                };
+
+                checkboxes.forEach(cb => {
+                    cb.addEventListener('change', evaluatePricing);
+                });
+            }
+        });
+    </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+    const pastelColors = ['#FF6B9D', '#6BCFFF', '#B8F0A8', '#FFD166'];
+
+    const updateWave = () => {
+        const maxScroll = Math.max(1, document.body.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        const hue = 328 + (199 - 328) * progress;
+        root.style.setProperty('--wave-bg', `hsl(${hue} 100% 97%)`);
+    };
+    updateWave();
+    window.addEventListener('scroll', updateWave, { passive: true });
+
+    const animatedCards = document.querySelectorAll([
+        '.quick-answer',
+        '.toc-card',
+        '.interactive-quiz',
+        '.content-image',
+        '.mockup-container',
+        '.feature-dl dd',
+        '.comp-table-wrapper',
+        '.pricing-builder',
+        '.builder-options label',
+        '.builder-result',
+        '.testimonial-band',
+        '.faq-card',
+        '.callout'
+    ].join(','));
+
+    animatedCards.forEach((el, index) => {
+        el.classList.add('bounce-card');
+        el.style.transitionDelay = `${Math.min(index % 5, 4) * 55}ms`;
+    });
+
+    const reveal = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                reveal.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+    animatedCards.forEach(el => reveal.observe(el));
+
+    const bubbleCards = document.querySelectorAll('.feature-dl dd, .faq-card, .testimonial-band, .content-image, .interactive-quiz, .pricing-builder');
+    bubbleCards.forEach((el, index) => {
+        el.classList.add('bubble-source');
+        el.style.setProperty('--bubble-color', pastelColors[index % pastelColors.length]);
+        el.addEventListener('click', () => {
+            el.classList.add('bubble-tap');
+            window.setTimeout(() => el.classList.remove('bubble-tap'), 950);
+        });
+    });
+
+    const launchConfetti = (button) => {
+        const rect = button.getBoundingClientRect();
+        const count = window.matchMedia('(max-width: 768px)').matches ? 12 : 20;
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+
+        for (let i = 0; i < count; i++) {
+            const piece = document.createElement('span');
+            piece.className = 'confetti-piece';
+            piece.style.left = `${originX}px`;
+            piece.style.top = `${originY}px`;
+            piece.style.background = pastelColors[i % pastelColors.length];
+            piece.style.setProperty('--tx', `${(Math.random() - 0.5) * 210}px`);
+            piece.style.setProperty('--ty', `${-50 - Math.random() * 130}px`);
+            piece.style.setProperty('--rot', `${Math.random() * 720 - 360}deg`);
+            document.body.appendChild(piece);
+            piece.addEventListener('animationend', () => piece.remove());
+        }
+    };
+
+    document.querySelectorAll('.btn-primary, .btn-outline, .btn-outline-dark, .btn-cta-nav').forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.remove('jelly-active');
+            void button.offsetWidth;
+            button.classList.add('jelly-active');
+            launchConfetti(button);
+            window.setTimeout(() => button.classList.remove('jelly-active'), 350);
+        });
+    });
+});
+</script></body>
+</html>
